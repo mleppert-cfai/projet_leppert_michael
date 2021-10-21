@@ -1,0 +1,12 @@
+$khaki-bg-color: #4D4729;
+$retroFontStyle: 'Stardos Stencil',cursive,sans-serif;
+$active-link-color: #fff;
+
+.active-link {
+    border-color: $active-link-color;
+}
+
+nav {
+    background-color: $khaki-bg-color;
+    font-family: $retroFontStyle;
+}

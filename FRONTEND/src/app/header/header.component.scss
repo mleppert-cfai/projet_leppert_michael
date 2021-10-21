@@ -1,0 +1,13 @@
+$khaki-bg-color: #4D4729;
+$white-font-color: #fff;
+$retroFontStyle: 'Lobster',cursive,sans-serif;
+
+header {
+    background-color: $khaki-bg-color;
+    color: $white-font-color;
+    font-family: $retroFontStyle;
+}
+
+h1 {
+    font-size: 200%;;
+}

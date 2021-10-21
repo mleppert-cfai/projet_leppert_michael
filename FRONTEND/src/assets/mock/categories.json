@@ -1,0 +1,10 @@
+[
+    { "id": "02", "categorie": "Tenue"},
+    { "id": "03", "categorie": "Véhicule"},
+    { "id": "04","categorie": "Arme"},
+    { "id": "05","categorie": "Pièces détachées armes"},
+    { "id": "06","categorie": "Pièces détachées véhicule"},
+    { "id": "07","categorie": "Accessoires"},
+    { "id": "08","categorie": "Artillerie"},
+    { "id": "99", "categorie": "Divers"}
+  ]
