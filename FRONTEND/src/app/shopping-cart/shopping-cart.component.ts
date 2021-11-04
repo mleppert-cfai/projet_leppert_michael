@@ -15,23 +15,8 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private store: Store) { }
 
   @Select(ProductState.getListeProducts) listProduct$!: Observable<Array<Product>>;
-  observerProduct: any;
 
   ngOnInit(): void {
-    if (this.observerProduct) {
-      this.observerProduct.unsubscribe();
-    }
-    this.observerProduct = this.listProduct$.subscribe(
-      (value) => {
-        console.log(value);
-      },
-      (error) => {
-        console.log(error);
-      },
-      () => {
-        console.log('Fini');
-      }
-    );
   }
 
   removeProduct(prod: Product){

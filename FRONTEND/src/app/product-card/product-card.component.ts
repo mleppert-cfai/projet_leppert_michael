@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { AddProduct } from 'shared/actions/product-action';
+import { AddProduct, RemoveProduct } from 'shared/actions/product-action';
 import { Product } from '../../../shared/models/product';
 
 @Component({
@@ -14,12 +14,19 @@ export class ProductCardComponent implements OnInit {
 
   @Input() product! : Product;
 
+  @Input() isInCart : boolean = false;
+
   ngOnInit(): void {
   }
 
   addProductToCart(){
-    console.log('Add product to cart');
     this.store.dispatch(new AddProduct(this.product));
+    this.isInCart = true;
+  }
+
+  removeProductToCart(){
+    this.store.dispatch(new RemoveProduct(this.product));
+    this.isInCart = false;
   }
 
 }

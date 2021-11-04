@@ -66,7 +66,7 @@ const appRoutes: Routes = [
     NgbModule,
     FormsModule,
     HttpClientModule,
-    NgxsModule.forRoot(),
+    NgxsModule.forRoot([ProductState]),
     RouterModule,
     RouterModule.forRoot(appRoutes),
   ],

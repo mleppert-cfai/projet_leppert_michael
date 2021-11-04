@@ -33,11 +33,11 @@ export class ProductState {
   @Action(RemoveProduct)
   remove(
     { getState, patchState }: StateContext<ProductStateModel>,
-    { payload }: AddProduct
+    { payload }: RemoveProduct
   ) {
     const state = getState();
     patchState({
-      products: [...state.products, payload],
+      products: state.products.filter(item => item != payload),
     });
   }
 }
