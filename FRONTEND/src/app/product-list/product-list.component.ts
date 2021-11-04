@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categorie } from '../categorie';
-import { Product } from '../product';
+import { Product } from '../../../shared/models/product';
 import { ProductServiceService } from '../product-service.service';
 import {map} from 'rxjs/operators';
 import { Periode } from '../periode';

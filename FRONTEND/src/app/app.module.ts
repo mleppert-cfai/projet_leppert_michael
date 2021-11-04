@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxsModule } from '@ngxs/store';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +18,32 @@ import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ProductState } from 'shared/states/product-state';
+
+const appRoutes: Routes = [
+  {
+    path: 'client-form',
+    component: ClientFormComponent,
+  },
+  {
+    path: 'product-list',
+    component: ProductListComponent,
+  },
+  {
+    path: 'shopping-cart',
+    component: ShoppingCartComponent,
+  },
+  {
+    path: '',
+    redirectTo: '/client-form',
+    pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
+];
 
 @NgModule({
   declarations: [
@@ -31,20 +58,17 @@ import { ProductCardComponent } from './product-card/product-card.component';
     SearchEngineComponent,
     NavBarComponent,
     PageNotFoundComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
     HttpClientModule,
+    NgxsModule.forRoot(),
     RouterModule,
-    RouterModule.forRoot([
-      {path: 'client-form', component: ClientFormComponent},
-      {path: 'product-list', component: ProductListComponent},
-      {path: '', redirectTo: '/client-form', pathMatch: 'full'},
-      {path: '**', component: PageNotFoundComponent}
-    ]),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [],
   bootstrap: [AppComponent]
