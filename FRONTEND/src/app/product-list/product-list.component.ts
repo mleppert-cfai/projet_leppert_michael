@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Categorie } from '../categorie';
 import { Product } from '../../../shared/models/product';
 import { ProductServiceService } from '../product-service.service';
-import {map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Periode } from '../periode';
 import { Pays } from '../pays';
 
