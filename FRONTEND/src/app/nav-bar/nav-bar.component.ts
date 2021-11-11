@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { ProductState } from 'shared/states/product-state';
 
 @Component({
@@ -11,7 +12,7 @@ export class NavBarComponent implements OnInit {
 
   constructor() { }
 
-  @Select(ProductState.getNbProducts) nbProducts!: number;
+  @Select(ProductState.getNbProducts) nbProducts!: Observable<number>;
 
   ngOnInit(): void {
   }
