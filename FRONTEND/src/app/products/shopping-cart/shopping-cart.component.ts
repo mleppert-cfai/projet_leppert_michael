@@ -3,7 +3,7 @@ import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { RemoveProduct } from 'shared/actions/product-action';
 import { ProductState } from 'shared/states/product-state';
-import { Product } from '../../../shared/models/product';
+import { Product } from '../../../../shared/models/product';
 
 @Component({
   selector: 'app-shopping-cart',

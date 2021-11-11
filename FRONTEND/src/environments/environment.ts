@@ -4,10 +4,10 @@
 
 export const environment = {
   production: false,
-  productsUrl: '../assets/mock/produits.json',
-  categoriesUrl: '../assets/mock/categories.json',
-  periodesUrl: '../assets/mock/periodes.json',
-  paysUrl: '../assets/mock/pays.json',
+  productsUrl: '/assets/mock/produits.json',
+  categoriesUrl: '/assets/mock/categories.json',
+  periodesUrl: '/assets/mock/periodes.json',
+  paysUrl: '/assets/mock/pays.json',
   name: 'default',
 };
 

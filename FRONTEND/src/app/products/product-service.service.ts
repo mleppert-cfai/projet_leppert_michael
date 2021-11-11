@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Product } from '../../shared/models/product';
+import { Product } from '../../../shared/models/product';
 import { Categorie } from './categorie';
 import { Periode } from './periode';
 import { Pays } from './pays';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class ProductServiceService {
 
