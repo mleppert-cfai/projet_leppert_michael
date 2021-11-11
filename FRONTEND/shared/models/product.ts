@@ -6,4 +6,5 @@ export class Product {
     periode!: string;
     pays!: string;
     prix!: number;
+    description!: string;
   }
