@@ -21,8 +21,13 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { ProductState } from 'shared/states/product-state';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
   {
     path: 'client-form',
     component: ClientFormComponent,
@@ -37,7 +42,7 @@ const appRoutes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/client-form',
+    redirectTo: '/home',
     pathMatch: 'full',
   },
   {
@@ -61,7 +66,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     ProductCardComponent,
     ShoppingCartComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
