@@ -1,1 +1,28 @@
-<p>product-detail works!</p>
+<div class=" m-3 col-md-11">
+    <div class="row product-content product-wrap clearfix" *ngIf="product$ | async as product">
+        <div class="col-md-5">
+            <div class="product-image"> 
+                <img src={{product.image}} alt="194x228" class="img-fluid">  
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="product-detail">
+                    <h5 class="name">
+                        <a>
+                            {{ product.libelle }} <span>{{ product.categorie }}</span>
+                        </a>
+                    </h5>
+                    <p class="price-container">
+                        <span>{{ product.prix }}€</span>
+                    </p>
+            </div>
+            <div class="description">
+                <p>Période : {{ product.periode }}</p>
+                <p>Pays : {{ product.pays }}</p>
+                <p>Description : <br><br>
+                    {{ product.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

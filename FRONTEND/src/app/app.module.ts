@@ -37,6 +37,10 @@ const appRoutes: Routes = [
     component: ProductListComponent,
   },
   {
+    path: 'product-list/:ref',
+    component: ProductDetailComponent,
+  },
+  {
     path: 'shopping-cart',
     component: ShoppingCartComponent,
   },

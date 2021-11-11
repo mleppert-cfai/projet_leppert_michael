@@ -18,6 +18,12 @@ export class ProductState {
   static getListeProducts(state: ProductStateModel) {
     return state.products;
   }
+  @Selector()
+  static getProduct(state: ProductStateModel) {
+    return (ref: string) => {
+      return state.products.filter(s => s.ref === ref).pop();
+    };
+  }
 
   @Action(AddProduct)
   add(
