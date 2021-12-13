@@ -1,0 +1,17 @@
+<header>
+    <h2 class="m-5 text-center border-bottom border-2 border-dark">Se connecter</h2>
+</header>
+
+<form class="row g-3 m-1" id="form" [formGroup]="connexionForm">
+    <div class="col-md-12">
+        <label for="login" class="form-label">Login</label>
+        <input type="text" class="form-control" id="login" formControlName="login">
+    </div>
+    <div class="col-md-12">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <div class="col-12 text-center">
+        <button class="btn btn-dark m-4" type="submit" (click)="connect()" [disabled]="!connexionForm.valid">Me connecter</button>
+    </div>
+</form>
