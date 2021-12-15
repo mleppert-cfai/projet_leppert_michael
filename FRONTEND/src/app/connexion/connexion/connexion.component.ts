@@ -37,11 +37,11 @@ export class ConnexionComponent implements OnInit {
     if(this.subscription != null){
       this.subscription.unsubscribe();
     }
-    this.subscription = this.api.postLogin(this.connexionForm.value.login, this.connexionForm.value.password).subscribe();
+    this.subscription = this.api.postLogin(this.connexionForm.value.login, this.connexionForm.value.password).subscribe(event => {console.log(event) ; this.user$ = this.api.getLogin(this.connexionForm.value.login);});
   }
 
   disconnect() : void {
-    //this.user$ = null;
+    this.user$ = null;
     //this.store.dispatch(new CreateJwt({"token":""}));
     this.router.navigate(['/']);
 
