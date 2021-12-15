@@ -41,7 +41,7 @@ export class ConnexionComponent implements OnInit {
   }
 
   disconnect() : void {
-    this.user$ = null;
+    //this.user$ = null;
     //this.store.dispatch(new CreateJwt({"token":""}));
     this.router.navigate(['/']);
 
