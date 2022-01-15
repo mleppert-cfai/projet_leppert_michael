@@ -9,7 +9,7 @@
             <div class="product-detail">
                     <h5 class="name">
                         <a>
-                            {{ product.name }} <span>{{ product.category }}</span>
+                            {{ product.name }} <span>{{ product.fk_category }}</span>
                         </a>
                     </h5>
                     <p class="price-container">
@@ -17,8 +17,8 @@
                     </p>
             </div>
             <div class="description">
-                <p>Période : {{ product.period }}</p>
-                <p>Pays : {{ product.country }}</p>
+                <p>Période : {{ product.fk_period }}</p>
+                <p>Pays : {{ product.fk_country }}</p>
             </div>
             <div class="product-info smart-form">
                 <div class="row">

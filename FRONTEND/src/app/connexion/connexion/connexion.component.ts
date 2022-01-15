@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/api.service';
-import { User } from 'src/app/models/user';
+import { Client } from 'shared/models/client';
+import { AddClient, RemoveClient, RemoveJwtToken } from 'shared/actions/client-action';
 
 @Component({
   selector: 'app-connexion',
@@ -17,7 +18,7 @@ export class ConnexionComponent implements OnInit {
 
   connexionForm !: FormGroup;
 
-  user$ !: Observable<User>;
+  client$ !: Observable<Client>;
   subscription !: Subscription;
 
   ngOnInit(): void {
@@ -37,12 +38,13 @@ export class ConnexionComponent implements OnInit {
     if(this.subscription != null){
       this.subscription.unsubscribe();
     }
-    this.subscription = this.api.postLogin(this.connexionForm.value.login, this.connexionForm.value.password).subscribe(event => {console.log(event) ; this.user$ = this.api.getLogin(this.connexionForm.value.login);});
+    this.subscription = this.api.postLogin(this.connexionForm.value.login, this.connexionForm.value.password).subscribe(event => {console.log(event) ; this.client$ = this.api.getLogin(this.connexionForm.value.login);});
   }
 
   disconnect() : void {
-    //this.user$ = null;
-    //this.store.dispatch(new CreateJwt({"token":""}));
+    this.client$ = null!;
+    this.store.dispatch(new RemoveClient());
+    this.store.dispatch(new RemoveJwtToken());
     this.router.navigate(['/']);
 
   }

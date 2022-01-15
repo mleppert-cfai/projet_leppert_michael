@@ -117,28 +117,28 @@ export class ProductListComponent implements OnInit {
 
   onApplyFilter() {
     if(this.filterCategory != "" && this.filterPeriod != "" && this.filterCountry != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.category === this.filterCategory && prod.period === this.filterPeriod && prod.country === this.filterCountry))));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.fk_category === this.filterCategory && prod.fk_period === this.filterPeriod && prod.fk_country === this.filterCountry))));
     }
 
     else if(this.filterCategory != "" && this.filterPeriod != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.category === this.filterCategory && prod.period === this.filterPeriod))));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.fk_category === this.filterCategory && prod.fk_period === this.filterPeriod))));
     }
     else if(this.filterCategory != "" && this.filterCountry != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.category === this.filterCategory && prod.country === this.filterCountry))));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.fk_category === this.filterCategory && prod.fk_country === this.filterCountry))));
     }
 
     else if(this.filterPeriod != "" && this.filterCountry != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.period === this.filterPeriod && prod.country === this.filterCountry))));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.fk_period === this.filterPeriod && prod.fk_country === this.filterCountry))));
     }
     
     else if(this.filterCategory != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.category === this.filterCategory)));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.fk_category === this.filterCategory)));
     }
     else if(this.filterPeriod != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.period === this.filterPeriod)));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.fk_period === this.filterPeriod)));
     }
     else if(this.filterCountry != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.country === this.filterCountry)));
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.fk_country === this.filterCountry)));
     }
 
     else{

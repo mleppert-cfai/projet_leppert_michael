@@ -1,4 +1,4 @@
-export class User {
+export class Client {
     id_client !: number;
     firstname !: string;
     lastname !: string;

@@ -11,3 +11,9 @@ export class RemoveProduct {
 
   constructor(public payload: Product) {}
 }
+
+export class RemoveAllProducts {
+  static readonly type = '[Product] RemoveAll';
+
+  constructor() {}
+}

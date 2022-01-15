@@ -6,6 +6,16 @@
     <app-product-card [product]="p" [isInCart]="true"></app-product-card>
 </div>
 
-<div class="d-flex justify-content-center m-3" *ngIf="(listProduct$ | async)?.length==0">
+<div class="d-flex justify-content-center m-3" *ngIf="((listProduct$ | async)?.length==0) && justBuyed==false">
     Votre panier est vide !
+</div>
+
+<div class="d-flex justify-content-center m-3" *ngIf="justBuyed==true">
+    Votre commande a bien ete prise en compte !
+</div>
+
+<div class="d-flex justify-content-center m-3" *ngIf="(listProduct$ | async)?.length!=0">
+    <div class="col-12 text-center">
+        <button class="btn btn-dark m-4" type="submit" (click)="onSubmit()" [disabled]="(listProduct$ | async)?.length==0">Acheter</button>
+    </div>
 </div>

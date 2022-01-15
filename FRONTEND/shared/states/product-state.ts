@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { AddProduct, RemoveProduct } from '../actions/product-action';
+import { AddProduct, RemoveAllProducts, RemoveProduct } from '../actions/product-action';
 import { ProductStateModel } from './product-state-model';
 @State<ProductStateModel>({
   name: 'products',
@@ -44,6 +44,16 @@ export class ProductState {
     const state = getState();
     patchState({
       products: state.products.filter(item => item != payload),
+    });
+  }
+
+  @Action(RemoveAllProducts)
+  removeAll(
+    { getState, patchState }: StateContext<ProductStateModel>
+  ) {
+    const state = getState();
+    patchState({
+      products: [],
     });
   }
 }
