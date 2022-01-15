@@ -1,17 +1,17 @@
 <div class="row g-3 m-5">
     <select [(ngModel)]="filterPeriode" class="col-md-4" id="selectPeriode">
       <option selected value="">Toutes périodes</option>
-      <option *ngFor="let p of periodes$ | async "
-      [value]="p.periode" >
-          {{ p.periode }}
+      <option *ngFor="let p of periods$ | async "
+      [value]="p.name" >
+          {{ p.name }}
       </option>
   </select>
     <div class="col-md-1"></div>
     <select [(ngModel)]="filterCategorie" class="col-md-4" id="selectCategorie">
         <option selected value="">Toutes catégories</option>
         <option *ngFor="let c of categories$ | async "
-        [value]="c.categorie" >
-            {{ c.categorie }}
+        [value]="c.name" >
+            {{ c.name }}
         </option>
     </select>
     <div class="col-md-1"></div>

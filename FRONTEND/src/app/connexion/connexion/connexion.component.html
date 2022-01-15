@@ -2,7 +2,7 @@
     <h2 class="m-5 text-center border-bottom border-2 border-dark">Se connecter</h2>
 </header>
 
-<form class="row g-3 m-1" id="form" [formGroup]="connexionForm">
+<form class="row g-3 m-1" [formGroup]="connexionForm">
     <div class="col-md-12">
         <label for="login" class="form-label">Login</label>
         <input type="text" class="form-control" id="login" formControlName="login">

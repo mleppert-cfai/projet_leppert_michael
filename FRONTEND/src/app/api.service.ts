@@ -9,8 +9,13 @@ import { User } from './models/user';
 })
 export class ApiService {
 
-  urlApiLogin = "/api/login";
-  urlApiAuth = "/api/auth/";
+  urlApiLogin = "/api/login/";
+  urlApiRegister = "/api/register/";
+  urlApiProducts = "/api/products/";
+  urlApiCategories = "/api/categories/";
+  urlApiCountries = "/api/countries/";
+  urlApiPeriods = "/api/periods/";
+  urlApiBuy = "/api/buy/";
   tokenParse : String = "";
 
   constructor(private httpClient : HttpClient) { }
@@ -20,7 +25,8 @@ export class ApiService {
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     };
-      data = "login=" + login + "&pass="+password;
+      data = "login=" + login + 
+      "&password=" + password;
       return this.httpClient.post<User>(environment.baseApiUrl + this.urlApiLogin, data, httpOptions);
   }
 
@@ -29,6 +35,30 @@ export class ApiService {
     data = "login=" + login;
     console.log(data);
 
-    return this.httpClient.get<User>(environment.baseApiUrl + this.urlApiAuth + login);
+    return this.httpClient.get<User>(environment.baseApiUrl + this.urlApiLogin + login);
   } 
+
+  public postRegister(firstname : String, lastname : String, civility : String, address : String, city : String, zip : String, country : String, email : String, phone : String, login : String, password : String): Observable<User> {
+    let data : String;
+    let httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+    };
+      data = "firstname=" + firstname +
+      "&lastname=" + lastname +
+      "&civility=" + civility +
+      "&address=" + address +
+      "&city=" + city +
+      "&zip=" + zip +
+      "&country=" + country +
+      "&email=" + email +
+      "&phone=" + phone +
+      "&login=" + login +
+      "&password=" + password;
+      return this.httpClient.post<User>(environment.baseApiUrl + this.urlApiRegister, data, httpOptions);
+  }
+
+  public getProducts() : Observable<User> {
+    return this.httpClient.get<User>(environment.baseApiUrl + this.urlApiLogin);
+  } 
+  
 }

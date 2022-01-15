@@ -1,10 +1,10 @@
 [
-    { "id": "02", "categorie": "Tenue"},
-    { "id": "03", "categorie": "Véhicule"},
-    { "id": "04","categorie": "Arme"},
-    { "id": "05","categorie": "Pièces détachées armes"},
-    { "id": "06","categorie": "Pièces détachées véhicule"},
-    { "id": "07","categorie": "Accessoires"},
-    { "id": "08","categorie": "Artillerie"},
-    { "id": "99", "categorie": "Divers"}
+    { "id_category": "1", "name": "Tenue"},
+    { "id_category": "2", "name": "Véhicule"},
+    { "id_category": "3","name": "Arme"},
+    { "id_category": "4","name": "Pièces détachées armes"},
+    { "id_category": "5","name": "Pièces détachées véhicule"},
+    { "id_category": "6","name": "Accessoires"},
+    { "id_category": "7","name": "Artillerie"},
+    { "id_category": "8", "name": "Divers"}
   ]

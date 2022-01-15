@@ -1,11 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Categorie } from '../categorie';
+import { from, Observable, of } from 'rxjs';
+import { Category } from '../category';
 import { Product } from '../../../../shared/models/product';
 import { ProductServiceService } from '../product-service.service';
 import { map } from 'rxjs/operators';
-import { Periode } from '../periode';
-import { Pays } from '../pays';
+import { Period } from '../period';
+import { Country } from '../country';
 
 @Component({
   selector: 'app-product-list',
@@ -17,17 +17,17 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductServiceService) { }
 
   catalogue$!: Observable<Array<Product>>;
-  categories$!: Observable<Array<Categorie>>;
-  periodes$!: Observable<Array<Periode>>;
-  pays$!: Observable<Array<Pays>>;
+  categories$!: Observable<Array<Category>>;
+  periods$!: Observable<Array<Period>>;
+  countries$!: Observable<Array<Country>>;
 
-  @Input() filterCategorie: string = "";
-  @Input() filterPeriode: string = "";
-  @Input() filterPays: string = "";
+  @Input() filterCategory: string = "";
+  @Input() filterPeriod: string = "";
+  @Input() filterCountry: string = "";
   
   observerCatalogue: any;
   observerCategories: any;
-  observerPeriodes: any;
+  observerPeriods: any;
   observerPays: any;
 
   ngOnInit(): void {
@@ -65,12 +65,12 @@ export class ProductListComponent implements OnInit {
       }
     );
 
-    this.periodes$ = this.productService.getPeriodes();
+    this.periods$ = this.productService.getPeriods();
     
-    if (this.observerPeriodes) {
-      this.observerPeriodes.unsubscribe();
+    if (this.observerPeriods) {
+      this.observerPeriods.unsubscribe();
     }
-    this.observerPeriodes = this.periodes$.subscribe(
+    this.observerPeriods = this.periods$.subscribe(
       (value) => {
         console.log(value);
       },
@@ -82,12 +82,12 @@ export class ProductListComponent implements OnInit {
       }
     );
 
-    this.pays$ = this.productService.getPays();
+    this.countries$ = this.productService.getCountries();
     
     if (this.observerPays) {
       this.observerPays.unsubscribe();
     }
-    this.observerPays = this.pays$.subscribe(
+    this.observerPays = this.countries$.subscribe(
       (value) => {
         console.log(value);
       },
@@ -107,8 +107,8 @@ export class ProductListComponent implements OnInit {
     if (this.observerCategories) {
       this.observerCategories.unsubscribe();
     }
-    if (this.observerPeriodes) {
-      this.observerPeriodes.unsubscribe();
+    if (this.observerPeriods) {
+      this.observerPeriods.unsubscribe();
     }
     if (this.observerPays) {
       this.observerPays.unsubscribe();
@@ -116,29 +116,29 @@ export class ProductListComponent implements OnInit {
   }
 
   onApplyFilter() {
-    if(this.filterCategorie != "" && this.filterPeriode != "" && this.filterPays != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.categorie === this.filterCategorie && prod.periode === this.filterPeriode && prod.pays === this.filterPays))));
+    if(this.filterCategory != "" && this.filterPeriod != "" && this.filterCountry != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.category === this.filterCategory && prod.period === this.filterPeriod && prod.country === this.filterCountry))));
     }
 
-    else if(this.filterCategorie != "" && this.filterPeriode != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.categorie === this.filterCategorie && prod.periode === this.filterPeriode))));
+    else if(this.filterCategory != "" && this.filterPeriod != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.category === this.filterCategory && prod.period === this.filterPeriod))));
     }
-    else if(this.filterCategorie != "" && this.filterPays != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.categorie === this.filterCategorie && prod.pays === this.filterPays))));
+    else if(this.filterCategory != "" && this.filterCountry != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.category === this.filterCategory && prod.country === this.filterCountry))));
     }
 
-    else if(this.filterPeriode != "" && this.filterPays != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.periode === this.filterPeriode && prod.pays === this.filterPays))));
+    else if(this.filterPeriod != "" && this.filterCountry != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => (prod.period === this.filterPeriod && prod.country === this.filterCountry))));
     }
     
-    else if(this.filterCategorie != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.categorie === this.filterCategorie)));
+    else if(this.filterCategory != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.category === this.filterCategory)));
     }
-    else if(this.filterPeriode != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.periode === this.filterPeriode)));
+    else if(this.filterPeriod != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.period === this.filterPeriod)));
     }
-    else if(this.filterPays != ""){
-      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.pays === this.filterPays)));
+    else if(this.filterCountry != ""){
+      this.catalogue$ = this.productService.getCatalogue().pipe(map(products => products.filter(prod => prod.country === this.filterCountry)));
     }
 
     else{

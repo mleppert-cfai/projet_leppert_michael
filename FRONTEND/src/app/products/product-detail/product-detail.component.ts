@@ -18,7 +18,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.product$ = this.productService.getCatalogue().pipe(
-      map(products => products.filter(prod => prod.ref === this.route.snapshot.params.ref)[0])
+      map(products => products.filter(prod => prod.id_product === this.route.snapshot.params.ref)[0])
     );
   }
 

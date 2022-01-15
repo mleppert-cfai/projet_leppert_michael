@@ -3,25 +3,25 @@
 </header>
 
 <div class="row m-5">
-  <select [(ngModel)]="filterPeriode" class="col m-1" id="selectPeriode">
+  <select [(ngModel)]="filterPeriod" class="col m-1" id="selectPeriode">
     <option selected value="">Toutes périodes</option>
-    <option *ngFor="let p of periodes$ | async "
-    [value]="p.periode" >
-        {{ p.periode }} ({{ p.description }})
+    <option *ngFor="let p of periods$ | async "
+    [value]="p.name" >
+        {{ p.name }} ({{ p.description }})
     </option>
 </select>
-  <select [(ngModel)]="filterCategorie" class="col m-1" id="selectCategorie">
+  <select [(ngModel)]="filterCategory" class="col m-1" id="selectCategorie">
       <option selected value="">Toutes catégories</option>
       <option *ngFor="let c of categories$ | async "
-      [value]="c.categorie" >
-          {{ c.categorie }}
+      [value]="c.name" >
+          {{ c.name }}
       </option>
   </select>
-  <select [(ngModel)]="filterPays" class="col m-1" id="selectPays">
+  <select [(ngModel)]="filterCountry" class="col m-1" id="selectPays">
     <option selected value="">Tous pays</option>
-    <option *ngFor="let p of pays$ | async "
-    [value]="p.pays" >
-        {{ p.pays }}
+    <option *ngFor="let p of countries$ | async "
+    [value]="p.name" >
+        {{ p.name }}
     </option>
   </select>
   <div class="col m-1 text-end">
@@ -31,4 +31,8 @@
 
 <div class="row g-3 m-1" *ngFor="let p of catalogue$ | async">
     <app-product-card [product]="p"></app-product-card>
+</div>
+
+<div class="d-flex justify-content-center m-3" *ngIf="(catalogue$ | async)?.length==0">
+    Aucun article ne correspond à vos filtres !
 </div>

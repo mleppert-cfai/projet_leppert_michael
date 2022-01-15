@@ -1,7 +1,7 @@
 [
-    { "id": "01", "pays": "France"},
-    { "id": "02", "pays": "Etats-Unis"},
-    { "id": "03", "pays": "Allemagne"},
-    { "id": "04", "pays": "Commonwealth"},
-    { "id": "05", "pays": "Russie / URSS"}
+    { "id_country": "1", "name": "France"},
+    { "id_country": "2", "name": "Etats-Unis"},
+    { "id_country": "3", "name": "Allemagne"},
+    { "id_country": "4", "name": "Commonwealth"},
+    { "id_country": "5", "name": "Russie / URSS"}
   ]

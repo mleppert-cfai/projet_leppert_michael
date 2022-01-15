@@ -2,58 +2,58 @@
     <h2 class="m-5 text-center border-bottom border-2 border-dark">S'inscrire</h2>
 </header>
 
-<div class="row g-3 m-1" id="form">
+<form class="row g-3 m-1" [formGroup]="registerForm">
     <div class="col-md-4">
         <label for="nom" class="form-label">Nom</label>
-        <input appInvalidInput="name" [(ngModel)]="name" type="text" class="form-control" id="nom" placeholder="Bon" required>
-        <div *ngIf="!validName" id="invalidNom" class="invalid-input text-danger">
+        <input formControlName="firstname" type="text" class="form-control" placeholder="Bon" required>
+        <div *ngIf="registerForm.controls.firstname.invalid && registerForm.controls.firstname.touched || submitted" class="invalid-input text-danger">
             Veuillez entrer un nom valide.
         </div>
     </div>
     <div class="col-md-4">
         <label for="Prenom" class="form-label">Prénom</label>
-        <input [(ngModel)]="surname" type="text" class="form-control" id="prenom" placeholder="Jean" required>
-        <div *ngIf="!validSurname" id="invalidPrenom" class="invalid-input text-danger">
+        <input formControlName="lastname" type="text" class="form-control" placeholder="Jean" required>
+        <div *ngIf="registerForm.controls.lastname.invalid && registerForm.controls.lastname.touched || submitted" class="invalid-input text-danger">
             Veuillez entrer un prénom valide.
         </div>
     </div>
     <div class="col-md-4">
         <label for="civilite" class="form-label">Civilité</label>
-        <select [(ngModel)]="civilite" class="form-select" id="civilite" required>
+        <select formControlName="civility" class="form-select" required>
             <option selected disabled value="">Choisir...</option>
             <option>Madame</option>
             <option>Monsieur</option>
             <option>Autre</option>
         </select>
-        <div *ngIf="!validCivilite" id="invalidCivilite" class="invalid-input text-danger">
+        <div *ngIf="registerForm.controls.civility.invalid && registerForm.controls.civility.touched || submitted" class="invalid-input text-danger">
             Veuillez choisir une civilité.
         </div>
     </div>
 
     <div class="col-md-4">
         <label for="adresse" class="form-label">Adresse</label>
-        <input [(ngModel)]="address" type="text" class="form-control" id="adresse" placeholder="15 rue du houblon" required>
-        <div *ngIf="!validAddress" id="invalidAdresse" class="invalid-input text-danger">
+        <input formControlName="address" type="text" class="form-control" placeholder="15 rue du houblon" required>
+        <div *ngIf="registerForm.controls.address.invalid && registerForm.controls.address.touched || submitted" class="invalid-input text-danger">
             Veuillez entrer une adresse valide.
         </div>
     </div>
     <div class="col-md-4">
         <label for="ville" class="form-label">Ville</label>
-        <input [(ngModel)]="city" type="text" class="form-control" id="ville" placeholder="Strasbourg" required>
-        <div *ngIf="!validCity" id="invalidVille" class="invalid-input text-danger">
+        <input formControlName="city" type="text" class="form-control" placeholder="Strasbourg" required>
+        <div *ngIf="registerForm.controls.city.invalid && registerForm.controls.city.touched || submitted" class="invalid-input text-danger">
             Veuillez entrer un nom valide.
         </div>
     </div>
     <div class="col-md-4">
         <label for="codePostal" class="form-label">Code postal</label>
-        <input [(ngModel)]="zipCode" type="text" class="form-control" id="codePostal" placeholder="67000" required>
-        <div *ngIf="!validZipCode" id="invalidCodePostal" class="invalid-input text-danger">
+        <input formControlName="zip" type="text" class="form-control" placeholder="67000" required>
+        <div *ngIf="registerForm.controls.zip.invalid && registerForm.controls.zip.touched || submitted" class="invalid-input text-danger">
             Veuillez entrer un code postal valide.
         </div>
     </div>
     <div class="col-md-4">
         <label for="pays">Pays</label>
-            <select select [(ngModel)]="country" class="form-select" id="pays" required>
+            <select formControlName="country" class="form-select" required>
                 <option selected disabled value="">Choisir...</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
@@ -300,56 +300,49 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </select>
-            <div *ngIf="!validCountry" id="invalidCountry" class="invalid-input text-danger">
+            <div *ngIf="registerForm.controls.country.invalid && registerForm.controls.country.touched || submitted" class="invalid-input text-danger">
                 Veuillez choisir un pays.
             </div>
     </div>
     <div class="col-md-4">
         <label for="email" class="form-label">Email</label>
-        <input [(ngModel)]="email" type="text" class="form-control" id="email" placeholder="jean.bon@mail.com" required>
-        <div *ngIf="!validEmail" id="invalidEmail" class="invalid-input text-danger">
+        <input formControlName="email" type="text" class="form-control" placeholder="jean.bon@mail.com" required>
+        <div *ngIf="(registerForm.controls.email.invalid && registerForm.controls.email.touched) || submitted" class="invalid-input text-danger">
             Veuillez entrer un email valide.
         </div>
     </div>
     <div class="col-md-4">
         <label for="telephone" class="form-label">téléphone</label>
-        <input [(ngModel)]="phone" type="text" class="form-control" id="telephone" placeholder="0122334455" required>
-        <div *ngIf="!validPhone" id="invalidTelephone" class="invalid-input text-danger">
+        <input formControlName="phone" type="text" class="form-control" placeholder="0122334455" required>
+        <div *ngIf="registerForm.controls.phone.invalid && registerForm.controls.phone.touched || submitted" class="invalid-input text-danger">
             Veuillez entrer un numéro de téléphone valide.
         </div>
     </div>
 
     <div class="col-md-8">
         <label for="login" class="form-label">Login</label>
-        <input [(ngModel)]="login" type="text" class="form-control" id="login" aria-describedby="inputGroupPrepend" placeholder="JeanBon67" required>
-        <div *ngIf="!validLogin" id="invalidLogin" class="invalid-input text-danger">
+        <input formControlName="login" type="text" class="form-control" aria-describedby="inputGroupPrepend" placeholder="JeanBon67" required>
+        <div *ngIf="registerForm.controls.login.invalid && registerForm.controls.login.touched || submitted" class="invalid-input text-danger">
             Veuillez choisir un login valide.
         </div>
     </div>
 
     <div class="col-md-6">
         <label for="password" class="form-label">Password</label>
-        <input [(ngModel)]="password" type="password" class="form-control" id="password" aria-describedby="inputGroupPrepend" required>
-        <div *ngIf="!validPassword" id="invalidPassword" class="invalid-input text-danger">
+        <input formControlName="password" type="password" class="form-control" aria-describedby="inputGroupPrepend" required>
+        <div *ngIf="registerForm.controls.password.invalid && registerForm.controls.password.touched || submitted" class="invalid-input text-danger">
             Veuillez choisir un mot de passe valide.
         </div>
     </div>
     <div class="col-md-6">
         <label for="confirmPassword" class="form-label">Confirm Password</label>
-        <input [(ngModel)]="confirmPassword" type="password" class="form-control" id="confirmPassword" aria-describedby="inputGroupPrepend" required>
-        <div *ngIf="!validConfirmPassword" id="confirmPasswordInvalid" class="invalid-input text-danger">
+        <input formControlName="confirmPassword" type="password" class="form-control" aria-describedby="inputGroupPrepend" required>
+        <div *ngIf="registerForm.controls.confirmPassword.invalid && registerForm.controls.confirmPassword.touched || submitted" class="invalid-input text-danger">
             Les mots de passe ne correspondent pas.
         </div>
     </div>
 
     <div class="col-12 text-center">
-        <button class="btn btn-dark m-4" type="submit" (click)="onSubmit()" [disabled]="!validForm">Valider le formulaire</button>
+        <button class="btn btn-dark m-4" type="submit" (click)="onSubmit()" [disabled]="!registerForm.valid">Valider le formulaire</button>
     </div>
-
-    <app-client-form-recap *ngIf="!hideRecap" [name]="name" [surname]="surname" 
-    [civilite]="civilite" [address]="address"
-    [city]="city" [zipCode]="zipCode"
-    [country]="country" [email]="email"
-    [phone]="phone" [login]="login">
-    </app-client-form-recap>
-</div>
+</form>

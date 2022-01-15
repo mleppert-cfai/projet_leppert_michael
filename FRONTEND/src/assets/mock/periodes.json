@@ -1,6 +1,6 @@
 [
-    { "id": "01", "periode": "WWI", "description": "1914-1918"},
-    { "id": "02", "periode": "WWII", "description": "1939-1945"},
-    { "id": "03", "periode": "Guerre froide", "description": "1946-1989"},
-    { "id": "04", "periode": "Actuelle", "description": "1990-Aujourd'hui"}
+    { "id_period": "1", "name": "WWI", "description": "1914-1918"},
+    { "id_period": "2", "name": "WWII", "description": "1939-1945"},
+    { "id_period": "3", "name": "Guerre froide", "description": "1946-1989"},
+    { "id_period": "4", "name": "Actuelle", "description": "1990-Aujourd'hui"}
   ]

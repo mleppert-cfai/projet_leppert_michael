@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Product } from '../../../shared/models/product';
-import { Categorie } from './categorie';
-import { Periode } from './periode';
-import { Pays } from './pays';
+import { Category } from './category';
+import { Period } from './period';
+import { Country } from './country';
 
 @Injectable({
   providedIn: 'any'
@@ -18,15 +18,15 @@ export class ProductServiceService {
     return this.httpClient.get<Array<Product>>(environment.productsUrl);
   }
 
-  public getCategories(): Observable<Array<Categorie>> {
-    return this.httpClient.get<Array<Categorie>>(environment.categoriesUrl);
+  public getCategories(): Observable<Array<Category>> {
+    return this.httpClient.get<Array<Category>>(environment.categoriesUrl);
   }
 
-  public getPeriodes(): Observable<Array<Periode>> {
-    return this.httpClient.get<Array<Periode>>(environment.periodesUrl);
+  public getPeriods(): Observable<Array<Period>> {
+    return this.httpClient.get<Array<Period>>(environment.periodesUrl);
   }
 
-  public getPays(): Observable<Array<Pays>> {
-    return this.httpClient.get<Array<Pays>>(environment.paysUrl);
+  public getCountries(): Observable<Array<Country>> {
+    return this.httpClient.get<Array<Country>>(environment.paysUrl);
   }
 }

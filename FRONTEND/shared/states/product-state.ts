@@ -20,8 +20,8 @@ export class ProductState {
   }
   @Selector()
   static getProduct(state: ProductStateModel) {
-    return (ref: string) => {
-      return state.products.filter(s => s.ref === ref).pop();
+    return (id_product: string) => {
+      return state.products.filter(s => s.id_product === id_product).pop();
     };
   }
 

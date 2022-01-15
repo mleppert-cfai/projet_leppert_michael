@@ -1,10 +1,10 @@
 export class Product {
-    ref!: string;
+    id_product!: string;
     image!: string;
-    libelle!: string;
-    categorie!: string;
-    periode!: string;
-    pays!: string;
-    prix!: number;
+    name!: string;
+    category!: string;
+    period!: string;
+    country!: string;
+    price!: number;
     description!: string;
   }

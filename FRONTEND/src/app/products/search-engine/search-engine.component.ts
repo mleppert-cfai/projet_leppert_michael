@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Categorie } from '../categorie';
-import { Periode } from '../periode';
+import { Category } from '../category';
+import { Period } from '../period';
 import { ProductServiceService } from '../product-service.service';
 
 @Component({
@@ -13,11 +13,11 @@ export class SearchEngineComponent implements OnInit {
 
   constructor(private productService: ProductServiceService) { }
 
-  categories$!: Observable<Array<Categorie>>;
-  periodes$!: Observable<Array<Periode>>;
+  categories$!: Observable<Array<Category>>;
+  periods$!: Observable<Array<Period>>;
   
   observerCategories: any;
-  observerPeriodes: any;
+  observerPeriods: any;
 
   @Input() filterCategorie: string = "";
   @Input() filterPeriode: string = "";
@@ -40,12 +40,12 @@ export class SearchEngineComponent implements OnInit {
       }
     );
 
-    this.periodes$ = this.productService.getPeriodes();
+    this.periods$ = this.productService.getPeriods();
     
-    if (this.observerPeriodes) {
-      this.observerPeriodes.unsubscribe();
+    if (this.observerPeriods) {
+      this.observerPeriods.unsubscribe();
     }
-    this.observerPeriodes = this.categories$.subscribe(
+    this.observerPeriods = this.categories$.subscribe(
       (value) => {
         console.log(value);
       },
@@ -62,8 +62,8 @@ export class SearchEngineComponent implements OnInit {
     if (this.observerCategories) {
       this.observerCategories.unsubscribe();
     }
-    if (this.observerPeriodes) {
-      this.observerPeriodes.unsubscribe();
+    if (this.observerPeriods) {
+      this.observerPeriods.unsubscribe();
     }
   }
 

@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ApiService } from 'src/app/api.service';
 
 @Component({
   selector: 'app-client-form',
@@ -7,88 +10,45 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ClientFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb : FormBuilder, private api: ApiService, private router : Router) { }
 
-  hideRecap : boolean = true;
-  
-  name : string = "";
-  surname : string = "";
-  civilite : string = "";
-  address : string = "";
-  city : string = "";
-  zipCode : string = "";
-  country : string = "";
-  email : string = "";
-  phone : string = "";
-  login : string = "";
-  password : string = "";
-  confirmPassword : string = "";
-
-  validForm : boolean = true;
-  validName : boolean = true;
-  validSurname : boolean = true;
-  validCivilite : boolean = true;
-  validAddress : boolean = true;
-  validCity : boolean = true;
-  validZipCode : boolean = true;
-  validCountry : boolean = true;
-  validEmail : boolean = true;
-  validPhone : boolean = true;
-  validLogin : boolean = true;
-  validPassword : boolean = true;
-  validConfirmPassword : boolean = true;
-
-  regexNameSurnameCity : RegExp = new RegExp("^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$");
-  regexAddress : RegExp = new RegExp("^[0-9]{1,3}[\\s].[\\sA-Za-zÀ-ÖØ-öø-ÿ\-\']+$");
-  regexZipCode : RegExp = new RegExp("^[0-9]{5}$");
-  regexEmail : RegExp = new RegExp("^[A-Za-zÀ-ÖØ-öø-ÿ\-\.]+@[A-Za-zÀ-ÖØ-öø-ÿ\-\.]+[\.].[A-Za-z]+$");
-  regexPhone : RegExp = new RegExp("^([0-9]{2}){5}$");
-  regexLogin : RegExp = new RegExp("^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$");
-  regexPassword : RegExp = new RegExp("^[\\S]+$");
-
-  onSubmit() : void {
-    this.validName = this.validateInput(this.name, this.regexNameSurnameCity);
-    this.validSurname = this.validateInput(this.surname, this.regexNameSurnameCity);
-    this.validCivilite = this.validateDropDownSelection(this.civilite);
-    this.validAddress = this.validateInput(this.address, this.regexAddress);
-    this.validCity = this.validateInput(this.city, this.regexNameSurnameCity);
-    this.validZipCode = this.validateInput(this.zipCode, this.regexZipCode);
-    this.validCountry = this.validateDropDownSelection(this.country);
-    this.validEmail = this.validateInput(this.email, this.regexEmail);
-    this.validPhone = this.validateInput(this.phone, this.regexPhone);
-    this.validLogin = this.validateInput(this.login, this.regexLogin);
-    this.validPassword = this.validateInput(this.password, this.regexPassword);
-    this.validConfirmPassword = this.validatePasswordMatch(this.password, this.confirmPassword);
-    this.hideRecap = false;
-  }
+  registerForm !: FormGroup;
+  submitted : boolean = false;
 
   ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      firstname: ['', [Validators.required, Validators.pattern("^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$")]],
+      lastname: ['', [Validators.required, Validators.pattern("^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$")]],
+      civility: ['', Validators.required],
+      address: ['', [Validators.required, Validators.pattern("^[0-9]{1,3}[\\s].[\\sA-Za-zÀ-ÖØ-öø-ÿ\-\']+$")]],
+      city: ['', [Validators.required, Validators.pattern("^[A-Za-zÀ-ÖØ-öø-ÿ\-]+$")]],
+      zip: ['', [Validators.required, Validators.pattern("^[0-9]{5}$")]],
+      country: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern("^[A-Za-zÀ-ÖØ-öø-ÿ0-9\-\.]+@[A-Za-zÀ-ÖØ-öø-ÿ\-\.]+[\.].[A-Za-z]+$")]],
+      phone: ['', [Validators.required, Validators.pattern("^([0-9]{2}){5}$")]],
+      login: ['', [Validators.required, Validators.pattern("^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$")]],
+      password: ['', [Validators.required, Validators.pattern("^[\\S]+$")]],
+      confirmPassword: ['', [Validators.required, Validators.pattern("^[\\S]+$")]]
+    });
   }
 
-  validateInput(input : string, regex : RegExp) : boolean {
-    if(! regex.test(input)) {
-      return false;
+  onSubmit() : void {
+    if(this.registerForm.valid) {
+      this.api.postRegister(this.registerForm.controls.firstname.value,
+        this.registerForm.controls.lastname.value,
+        this.registerForm.controls.civility.value,
+        this.registerForm.controls.address.value,
+        this.registerForm.controls.city.value,
+        this.registerForm.controls.zip.value,
+        this.registerForm.controls.country.value,
+        this.registerForm.controls.email.value,
+        this.registerForm.controls.phone.value,
+        this.registerForm.controls.login.value,
+        this.registerForm.controls.password.value).subscribe(event => {console.log(event)});
+      this.router.navigate(['/']);
     }
     else {
-      return true;
-    }
-  }
-
-  validateDropDownSelection(selection : string) : boolean {
-    if(selection == "") {
-      return false;
-    }
-    else {
-      return true;
-    }    
-  }
-
-  validatePasswordMatch(passwordInput : string, confirmPasswordInput : string) : boolean {
-    if(passwordInput != confirmPasswordInput) {
-      return false;
-    }
-    else {
-      return true;
+      this.submitted = true;
     }
   }
 
