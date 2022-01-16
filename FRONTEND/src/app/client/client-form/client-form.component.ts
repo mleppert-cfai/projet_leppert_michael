@@ -45,7 +45,7 @@ export class ClientFormComponent implements OnInit {
         this.registerForm.controls.phone.value,
         this.registerForm.controls.login.value,
         this.registerForm.controls.password.value).subscribe(event => {console.log(event)});
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }
     else {
       this.submitted = true;

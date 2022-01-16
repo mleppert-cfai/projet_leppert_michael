@@ -16,18 +16,22 @@ export class ProductServiceService {
   constructor(private httpClient: HttpClient, private api: ApiService) {}
 
   public getCatalogue(): Observable<Array<Product>> {
-    return this.httpClient.get<Array<Product>>(environment.productsUrl);
+    return this.api.getProducts();
+    //return this.httpClient.get<Array<Product>>(environment.productsUrl);
   }
 
   public getCategories(): Observable<Array<Category>> {
-    return this.httpClient.get<Array<Category>>(environment.categoriesUrl);
+    return this.api.getCategories();
+    //return this.httpClient.get<Array<Category>>(environment.categoriesUrl);
   }
 
   public getPeriods(): Observable<Array<Period>> {
-    return this.httpClient.get<Array<Period>>(environment.periodesUrl);
+    return this.api.getPeriods();
+    //return this.httpClient.get<Array<Period>>(environment.periodesUrl);
   }
 
   public getCountries(): Observable<Array<Country>> {
-    return this.httpClient.get<Array<Country>>(environment.paysUrl);
+    return this.api.getCountries();
+    //return this.httpClient.get<Array<Country>>(environment.paysUrl);
   }
 }
