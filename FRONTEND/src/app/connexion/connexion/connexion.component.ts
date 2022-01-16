@@ -21,6 +21,8 @@ export class ConnexionComponent implements OnInit {
   client$ !: Observable<Client>;
   subscription !: Subscription;
 
+  errorMsg : String = '';
+
   ngOnInit(): void {
     this.connexionForm = this.fb.group({
       login: ['', Validators.required],
@@ -38,7 +40,17 @@ export class ConnexionComponent implements OnInit {
     if(this.subscription != null){
       this.subscription.unsubscribe();
     }
-    this.subscription = this.api.postLogin(this.connexionForm.value.login, this.connexionForm.value.password).subscribe(event => {console.log(event) ; this.client$ = this.api.getLogin(this.connexionForm.value.login);});
+    this.subscription = this.api.postLogin(this.connexionForm.value.login, this.connexionForm.value.password).subscribe(
+        event => {
+          console.log(event);
+          this.client$ = this.api.getLogin(this.connexionForm.value.login);
+          this.router.navigate(['/']);
+        },
+        error => {
+          console.log(error);
+          this.errorMsg = error.error.ERROR;
+        }
+    );
   }
 
   disconnect() : void {

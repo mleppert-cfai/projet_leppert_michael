@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 
@@ -14,6 +14,7 @@ export class ClientFormComponent implements OnInit {
 
   registerForm !: FormGroup;
   submitted : boolean = false;
+  errorMsg : String = '';
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -29,7 +30,9 @@ export class ClientFormComponent implements OnInit {
       login: ['', [Validators.required, Validators.pattern("^[A-Za-zÀ-ÖØ-öø-ÿ0-9]+$")]],
       password: ['', [Validators.required, Validators.pattern("^[\\S]+$")]],
       confirmPassword: ['', [Validators.required, Validators.pattern("^[\\S]+$")]]
-    });
+    },
+    {validator: this.passwordMatchValidator}
+    );
   }
 
   onSubmit() : void {
@@ -44,12 +47,23 @@ export class ClientFormComponent implements OnInit {
         this.registerForm.controls.email.value,
         this.registerForm.controls.phone.value,
         this.registerForm.controls.login.value,
-        this.registerForm.controls.password.value).subscribe(event => {console.log(event)});
-      this.router.navigate(['/login']);
+        this.registerForm.controls.password.value).subscribe(
+          event => {            
+            console.log(event);
+            this.router.navigate(['/login']);
+          },
+          error => {
+            console.log(error);
+            this.errorMsg = error.error.ERROR;
+          }
+          );
     }
     else {
       this.submitted = true;
     }
   }
 
+  passwordMatchValidator(frm: FormGroup) {
+    return frm.controls['password'].value === frm.controls['confirmPassword'].value ? null : {'mismatch': true};
+  }
 }

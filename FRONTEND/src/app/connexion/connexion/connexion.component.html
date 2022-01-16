@@ -11,6 +11,9 @@
         <label for="Password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" formControlName="password">
     </div>
+    <div class="d-flex justify-content-center m-3 text-danger" *ngIf="errorMsg!=''">
+        {{errorMsg}}
+    </div>
     <div class="col-12 text-center">
         <button class="btn btn-dark m-4" type="submit" (click)="connect()" [disabled]="!connexionForm.valid">Me connecter</button>
     </div>
