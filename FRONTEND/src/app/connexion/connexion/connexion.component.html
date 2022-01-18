@@ -2,7 +2,7 @@
     <h2 class="m-5 text-center border-bottom border-2 border-dark">Se connecter</h2>
 </header>
 
-<form class="row g-3 m-1" [formGroup]="connexionForm">
+<form class="row g-3 m-1" [formGroup]="connexionForm" *ngIf="(client$ | async)==null">
     <div class="col-md-12">
         <label for="login" class="form-label">Login</label>
         <input type="text" class="form-control" id="login" formControlName="login">
@@ -14,7 +14,19 @@
     <div class="d-flex justify-content-center m-3 text-danger" *ngIf="errorMsg!=''">
         {{errorMsg}}
     </div>
+    <div class="d-flex justify-content-center m-3" *ngIf="successMsg!=''">
+        {{successMsg}}
+    </div>
     <div class="col-12 text-center">
         <button class="btn btn-dark m-4" type="submit" (click)="connect()" [disabled]="!connexionForm.valid">Me connecter</button>
     </div>
 </form>
+
+<div class="row g-3 m-1" *ngIf="(client$ | async) as client">
+    <div class="col-12 text-center">
+        Vous êtes connecté {{client.login}}
+    </div>
+    <div class="col-12 text-center">
+        <button class="btn btn-dark m-4" type="submit" (click)="disconnect()">Me deconnecter</button>
+    </div>
+</div>

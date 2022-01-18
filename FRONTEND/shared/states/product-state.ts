@@ -20,7 +20,7 @@ export class ProductState {
   }
   @Selector()
   static getProduct(state: ProductStateModel) {
-    return (id_product: string) => {
+    return (id_product: number) => {
       return state.products.filter(s => s.id_product === id_product).pop();
     };
   }

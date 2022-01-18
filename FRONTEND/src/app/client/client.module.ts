@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxsModule } from '@ngxs/store';
 
 import { PhoneFormatPipe } from './phone-format.pipe';
 
@@ -30,7 +30,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ]
 })
 export class ClientModule { }

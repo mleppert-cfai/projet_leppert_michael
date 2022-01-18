@@ -15,6 +15,7 @@ export class ClientFormComponent implements OnInit {
   registerForm !: FormGroup;
   submitted : boolean = false;
   errorMsg : String = '';
+  successMsg : String = '';
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -50,10 +51,13 @@ export class ClientFormComponent implements OnInit {
         this.registerForm.controls.password.value).subscribe(
           event => {            
             console.log(event);
-            this.router.navigate(['/login']);
+            //this.router.navigate(['/login']);
+            this.successMsg = 'Votre compte a bien été crée !'
+            this.errorMsg = '';
           },
           error => {
             console.log(error);
+            this.successMsg= '';
             this.errorMsg = error.error.ERROR;
           }
           );

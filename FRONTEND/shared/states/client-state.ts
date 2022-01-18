@@ -8,7 +8,7 @@ import { ClientStateModel } from './client-state-model';
   name: 'client',
   defaults: {
     client: null!,
-    jwtToken: "",
+    jwtToken: '',
   },
 })
 @Injectable()

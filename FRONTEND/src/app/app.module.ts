@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { ApiHttpInterceptor } from './api-http-interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ConnexionComponent } from './connexion/connexion/connexion.component';
+import { ClientState } from 'shared/states/client-state';
 
 const appRoutes: Routes = [
   {
@@ -59,7 +60,8 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxsModule.forRoot([ProductState]),
+    NgxsModule.forRoot([ProductState]),    
+    NgxsModule.forRoot([ClientState]),
     RouterModule,
     RouterModule.forRoot(appRoutes),
   ],

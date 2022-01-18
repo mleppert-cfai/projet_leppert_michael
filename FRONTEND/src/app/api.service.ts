@@ -15,10 +15,6 @@ export class ApiService {
 
   urlApiLogin = "/api/login/";
   urlApiRegister = "/api/register/";
-  urlApiProducts = "/api/products/";
-  urlApiCategories = "/api/categories/";
-  urlApiCountries = "/api/countries/";
-  urlApiPeriods = "/api/periods/";
   urlApiBuy = "/api/buy/";
   urlApiOrderHistory = "/api/orderhistory/";
   tokenParse : String = "";
@@ -62,29 +58,14 @@ export class ApiService {
       return this.httpClient.post<Client>(environment.baseApiUrl + this.urlApiRegister, data, httpOptions);
   }
 
-  public getProducts() : Observable<Array<Product>> {
-    return this.httpClient.get<Array<Product>>(environment.baseApiUrl + this.urlApiProducts);
-  }
-
-  public getCategories() : Observable<Array<Category>> {
-    return this.httpClient.get<Array<Category>>(environment.baseApiUrl + this.urlApiCategories);
-  }
-
-  public getCountries() : Observable<Array<Country>> {
-    return this.httpClient.get<Array<Country>>(environment.baseApiUrl + this.urlApiCountries);
-  }
-
-  public getPeriods() : Observable<Array<Period>> {
-    return this.httpClient.get<Array<Period>>(environment.baseApiUrl + this.urlApiPeriods);
-  }
-
   public postBuy(id_client : number, id_product : Array<number>): Observable<any> {
     let data : String;
     let httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
     };
       data = "id_client=" + id_client + 
-      "&id_product=" + id_product;
+      "&id_products=" + id_product;
+      console.log('DATA : ' + data);
       return this.httpClient.post<any>(environment.baseApiUrl + this.urlApiBuy, data, httpOptions);
   }
 

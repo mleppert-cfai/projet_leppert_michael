@@ -13,21 +13,15 @@ export class ApiHttpInterceptor implements HttpInterceptor
 {
 jwtToken : String = "";
 constructor(private store : Store) { }
-
 intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.jwtToken != "") {
+    /*if (this.jwtToken != "") {
         req = req.clone({ setHeaders: { Authorization: `Bearer ${this.jwtToken}` }});
-    }/*
-    let jwt : String = "";
-    // = this.store.selectSnapshot<String>(ClientState.getJwtToken) ;
-    this.store.select(ClientState.getJwtToken).subscribe(data => {
-        console.log(data);
-        //jwt = data;
-    });
-    if (jwt != "") {
-        req = req.clone({ setHeaders: { Authorization: `Bearer
-        ${jwt}` }});
     }*/
+    let jwt : String = "";
+    jwt = this.store.selectSnapshot(ClientState.getJwtToken)
+    if (jwt != "") {
+        req = req.clone({ setHeaders: { Authorization: `Bearer ${jwt}` }});
+    }
 
     return next.handle(req).pipe(tap(
     (evt : HttpEvent<any>) => {
@@ -38,10 +32,10 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
             if (enteteAuthorization != null ) {
                 tab = enteteAuthorization.split(/Bearer\s+(.*)$/i);
                 if (tab.length > 1) {
-                    this.jwtToken = tab [1];
-                    /*console.log(jwt);
-                    console.log(tab[1]);
-                    this.store.dispatch(new AddJwtToken(tab[1]));*/
+                    //this.jwtToken = tab [1];
+                    //console.log(jwt);
+                    //console.log(tab[1]);
+                    this.store.dispatch(new AddJwtToken(tab[1]));
                 }
             }
         }

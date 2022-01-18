@@ -13,25 +13,26 @@ import { ApiService } from '../api.service';
 })
 export class ProductServiceService {
 
+  urlApiProducts = "/api/products/";
+  urlApiCategories = "/api/categories/";
+  urlApiCountries = "/api/countries/";
+  urlApiPeriods = "/api/periods/";
+
   constructor(private httpClient: HttpClient, private api: ApiService) {}
 
-  public getCatalogue(): Observable<Array<Product>> {
-    return this.api.getProducts();
-    //return this.httpClient.get<Array<Product>>(environment.productsUrl);
+  public getCatalogue() : Observable<Array<Product>> {
+    return this.httpClient.get<Array<Product>>(environment.baseApiUrl + this.urlApiProducts);
   }
 
-  public getCategories(): Observable<Array<Category>> {
-    return this.api.getCategories();
-    //return this.httpClient.get<Array<Category>>(environment.categoriesUrl);
+  public getCategories() : Observable<Array<Category>> {
+    return this.httpClient.get<Array<Category>>(environment.baseApiUrl + this.urlApiCategories);
   }
 
-  public getPeriods(): Observable<Array<Period>> {
-    return this.api.getPeriods();
-    //return this.httpClient.get<Array<Period>>(environment.periodesUrl);
+  public getCountries() : Observable<Array<Country>> {
+    return this.httpClient.get<Array<Country>>(environment.baseApiUrl + this.urlApiCountries);
   }
 
-  public getCountries(): Observable<Array<Country>> {
-    return this.api.getCountries();
-    //return this.httpClient.get<Array<Country>>(environment.paysUrl);
+  public getPeriods() : Observable<Array<Period>> {
+    return this.httpClient.get<Array<Period>>(environment.baseApiUrl + this.urlApiPeriods);
   }
 }
