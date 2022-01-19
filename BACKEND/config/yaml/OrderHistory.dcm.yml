@@ -1,0 +1,48 @@
+OrderHistory:
+    type: entity
+    table: order_history
+    indexes:
+        IDX_D1C0D900E7EA6CC5:
+            columns:
+                - fk_client
+        IDX_D1C0D90023653981:
+            columns:
+                - fk_product
+    id:
+        idOrder:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_order
+        fkClient:
+            associationKey: true
+        fkProduct:
+            associationKey: true
+    fields:
+        date:
+            type: date
+            nullable: true
+    oneToOne:
+        fkClient:
+            targetEntity: Client
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_client:
+                    referencedColumnName: id_client
+            orphanRemoval: false
+        fkProduct:
+            targetEntity: Product
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_product:
+                    referencedColumnName: id_product
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,21 @@
+Category:
+    type: entity
+    table: category
+    id:
+        idCategory:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_category
+            generator:
+                strategy: SEQUENCE
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 100
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

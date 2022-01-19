@@ -1,0 +1,79 @@
+Product:
+    type: entity
+    table: product
+    indexes:
+        IDX_D34A04AD34645A1F:
+            columns:
+                - fk_category
+        IDX_D34A04ADE516765E:
+            columns:
+                - fk_period
+        IDX_D34A04ADA35CF44A:
+            columns:
+                - fk_country
+    id:
+        idProduct:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_product
+            generator:
+                strategy: SEQUENCE
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        description:
+            type: string
+            nullable: true
+            length: 1000
+            options:
+                fixed: false
+        image:
+            type: string
+            nullable: true
+            length: 500
+            options:
+                fixed: false
+        price:
+            type: decimal
+            nullable: true
+            precision: 10
+            scale: 0
+    manyToOne:
+        fkCategory:
+            targetEntity: Category
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_category:
+                    referencedColumnName: id_category
+            orphanRemoval: false
+        fkPeriod:
+            targetEntity: Period
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_period:
+                    referencedColumnName: id_period
+            orphanRemoval: false
+        fkCountry:
+            targetEntity: Country
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                fk_country:
+                    referencedColumnName: id_country
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
