@@ -13,6 +13,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { SearchEngineComponent } from './search-engine/search-engine.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'shopping-cart',
     component: ShoppingCartComponent,
+  },  
+  {
+    path: 'order',
+    component: OrderHistoryComponent,
   },
   {
     path: ':ref',
@@ -37,6 +42,7 @@ const routes: Routes = [
     ProductCardComponent,
     ShoppingCartComponent,
     ProductDetailComponent,
+    OrderHistoryComponent
   ],
   imports: [
     CommonModule,

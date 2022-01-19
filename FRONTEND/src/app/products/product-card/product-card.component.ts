@@ -16,6 +16,8 @@ export class ProductCardComponent implements OnInit {
 
   @Input() isInCart : boolean = false;
 
+  @Input() isInHistory : boolean = false;
+
   ngOnInit(): void {
   }
 

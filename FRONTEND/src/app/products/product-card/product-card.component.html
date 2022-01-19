@@ -22,10 +22,10 @@
             </div>
             <div class="product-info smart-form">
                 <div class="row">
-                    <div class="col-md-6" *ngIf="!isInCart"> 
+                    <div class="col-md-6" *ngIf="!isInCart && !isInHistory"> 
                         <a class="btn btn-dark" (click)="addProductToCart()">Ajouter au panier</a>
                     </div>
-                    <div class="col-md-6" *ngIf="isInCart"> 
+                    <div class="col-md-6" *ngIf="isInCart && !isInHistory"> 
                         <a class="btn btn-info" (click)="removeProductToCart()">Retirer du panier</a>
                     </div>
                     <div class="col-md-6"> 

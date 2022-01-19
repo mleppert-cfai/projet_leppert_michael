@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { Client } from '../../shared/models/client';
 import { Category } from './products/category';
 import { Country } from './products/country';
+import { Order } from './products/order';
 import { Period } from './products/period';
 
 @Injectable({
@@ -15,7 +16,7 @@ export class ApiService {
 
   urlApiLogin = "/api/login/";
   urlApiRegister = "/api/register/";
-  urlApiBuy = "/api/buy/";
+  urlApiOrder = "/api/order/";
   urlApiOrderHistory = "/api/orderhistory/";
   tokenParse : String = "";
 
@@ -66,13 +67,13 @@ export class ApiService {
       data = "id_client=" + id_client + 
       "&id_products=" + id_product;
       console.log('DATA : ' + data);
-      return this.httpClient.post<any>(environment.baseApiUrl + this.urlApiBuy, data, httpOptions);
+      return this.httpClient.post<any>(environment.baseApiUrl + this.urlApiOrder, data, httpOptions);
   }
 
-  public getOrderHistory(id_client : number): Observable<Product> {
+  public getOrderHistory(id_client : number): Observable<Array<Order>> {
     let data : String;
     data = "id_client=" + id_client;
-    return this.httpClient.get<Product>(environment.baseApiUrl + this.urlApiOrderHistory + id_client);
+    return this.httpClient.get<Array<Order>>(environment.baseApiUrl + this.urlApiOrderHistory + id_client);
   }
   
 }

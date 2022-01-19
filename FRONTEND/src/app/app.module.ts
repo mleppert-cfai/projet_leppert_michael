@@ -52,7 +52,7 @@ const appRoutes: Routes = [
     NavBarComponent,
     PageNotFoundComponent,
     HomeComponent,
-    ConnexionComponent
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,

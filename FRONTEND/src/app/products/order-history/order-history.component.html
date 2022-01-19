@@ -1,0 +1,23 @@
+<div class="row g-3 m-1"  *ngIf="currentClient!=null">
+    <div *ngIf="(orderHistory$ | async)?.length != 0">
+        <div class="row g-3 m-1" *ngFor="let o of orderHistory$ | async">
+            <div class="col-12 text-center">
+                <h2> Commande {{o.id_order}} du {{o.orderDate}} </h2>
+            </div>
+            <div class="row g-3 m-1" *ngFor="let p of o.list_products">
+                <app-product-card [product]="p" [isInHistory]="true"></app-product-card>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="(orderHistory$ | async) == null || (orderHistory$ | async)?.length == 0">
+        <div class="col-12 text-center">
+            Vous n'avez rien commandé pour le moment
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 m-1"  *ngIf="currentClient==null">
+    <div class="col-12 text-center">
+        Vous devez vous connecter pour consulter l'historique des commandes
+    </div>
+</div>
