@@ -1,10 +1,14 @@
 <h2 class="mt-5 text-center">Récapitulatif des informations saisies</h2>
 
-<div class="row g-3 m-1">
-    <p>Nom : {{name}} {{surname}}</p>
-    <p>Civilité : {{civilite}}</p>
-    <p>Adresse : {{address}} {{zipCode}} {{city}} {{country}}</p>
-    <p>Email : {{email}}</p>
-    <p>Numéro de téléphone : {{phone | phoneFormat }}</p>
-    <p>login : {{login}}</p>
+<div class="row g-3 m-5" *ngIf="currentClient != null">
+    <p>Nom : {{currentClient.firstname}} {{currentClient.lastname}}</p>
+    <p>Civilité : {{currentClient.civility}}</p>
+    <p>Adresse : {{currentClient.address}} {{currentClient.zip}} {{currentClient.city}} {{currentClient.country}}</p>
+    <p>Email : {{currentClient.email}}</p>
+    <p>Numéro de téléphone : {{currentClient.phone | phoneFormat }}</p>
+    <p>Login : {{currentClient.login}}</p>
+</div>
+
+<div class="row g-3 m-1 text-center" *ngIf="currentClient == null">
+    <p>Vous devez être connecté pour consulter vos informations</p>
 </div>

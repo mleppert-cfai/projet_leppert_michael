@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'client-form',
     component: ClientFormComponent,
   },
+  {
+    path: 'client-recap',
+    component: ClientFormRecapComponent,
+  },
 ];
 
 @NgModule({

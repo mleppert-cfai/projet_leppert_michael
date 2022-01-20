@@ -1,4 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Client } from 'shared/models/client';
+import { ClientState } from 'shared/states/client-state';
 
 @Component({
   selector: 'app-client-form-recap',
@@ -7,20 +10,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ClientFormRecapComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
-  @Input() name : string = "none";
-  @Input() surname : string = "none";
-  @Input() civilite : string = "none";
-  @Input() address : string = "none";
-  @Input() city : string = "none";
-  @Input() zipCode : string = "none";
-  @Input() country : string = "none";
-  @Input() email : string = "none";
-  @Input() phone : string = "none";
-  @Input() login : string = "none";
+  currentClient : Client = null!
 
   ngOnInit(): void {
+    this.currentClient = this.store.selectSnapshot(ClientState.getClient);
   }
 
 }

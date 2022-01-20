@@ -20,7 +20,6 @@ export class OrderHistoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentClient = this.store.selectSnapshot(ClientState.getClient);
-    console.log('currentClient '+this.currentClient);
     if(this.currentClient != null){
       this.orderHistory$ = this.api.getOrderHistory(this.currentClient.id_client);
       this.orderHistory$.subscribe(event => console.log(event))
